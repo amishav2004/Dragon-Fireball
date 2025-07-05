@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour {
 
     void Start () {
         rig2D = this.gameObject.GetComponent<Rigidbody2D>();
-        rig2D.velocity = initialDirection * new Vector2(speed, speed);
+        rig2D.linearVelocity = initialDirection * new Vector2(speed, speed);
     }
 
     void Update () {

@@ -14,7 +14,7 @@ public class SpikeController : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rig2D = this.gameObject.GetComponent<Rigidbody2D>();
-        rig2D.velocity = spikeAngle * new Vector2(speed, speed);
+        rig2D.linearVelocity = spikeAngle * new Vector2(speed, speed);
         boundsSize = GetComponent<PolygonCollider2D>().bounds.size;
         initialPos = this.transform.position;
 
@@ -59,7 +59,7 @@ public class SpikeController : MonoBehaviour {
 	}
 
     private void changeDir() {
-        rig2D.velocity *= -1;
+        rig2D.linearVelocity *= -1;
         turning = true;
         StartCoroutine(doneTurning());
     }

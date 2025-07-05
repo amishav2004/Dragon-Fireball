@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
                 maxLevel = gs.maxLevel;
                 stars = gs.stars;
                 deaths = gs.deaths;
-            } catch (System.Exception e) {
+            } catch (System.Exception ) {
                 return defaultGameSave();
             }
         }

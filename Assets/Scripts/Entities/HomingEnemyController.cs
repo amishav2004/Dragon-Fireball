@@ -31,7 +31,7 @@ public class HomingEnemyController : MonoBehaviour {
 
         float rotateAmount = Vector3.Cross(direction, transform.up).z;
         r2d.angularVelocity = -angleChangingSpeed * rotateAmount;
-        r2d.velocity =  transform.up * speed;
+        r2d.linearVelocity =  transform.up * speed;
 
         if(canSpawn() && pendingSpawn) {
             StartCoroutine(spawn());
@@ -71,7 +71,7 @@ public class HomingEnemyController : MonoBehaviour {
     {
         yield return new WaitForSeconds(respawnRate);
         if (canSpawn()) {
-            r2d.velocity = Vector2.zero;
+            r2d.linearVelocity = Vector2.zero;
             this.transform.position = startingPoint;
             // rotate towards target
             Vector3 current = transform.position;

@@ -63,15 +63,15 @@ namespace AStar {
         void Update()
         {
             StartCoroutine(findPath());
-            rig2D.velocity = (speed * direction);
+            rig2D.linearVelocity = (speed * direction);
 
-            if (rig2D.velocity.x < 0 && faceRight)
+            if (rig2D.linearVelocity.x < 0 && faceRight)
             {
                 transform.localRotation = Quaternion.Euler(0, 0, 0);
                 faceRight = false;
 
             }
-            else if (rig2D.velocity.x > 0 && !faceRight)
+            else if (rig2D.linearVelocity.x > 0 && !faceRight)
             {
                 transform.localRotation = Quaternion.Euler(0, 180, 0);
                 faceRight = true;

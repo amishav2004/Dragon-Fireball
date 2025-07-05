@@ -22,7 +22,7 @@ public class ProjectileEnemyController : MonoBehaviour {
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         rig2D = this.gameObject.GetComponent<Rigidbody2D>();
-        rig2D.velocity = initialDirection * new Vector2(speed, speed);
+        rig2D.linearVelocity = initialDirection * new Vector2(speed, speed);
     }
 	
 	// Update is called once per frame
@@ -45,7 +45,7 @@ public class ProjectileEnemyController : MonoBehaviour {
         this.transform.position = startingPoint;
         spriteRenderer.enabled = true;
         col.enabled = true;
-        rig2D.velocity = initialDirection * new Vector2(speed, speed);
+        rig2D.linearVelocity = initialDirection * new Vector2(speed, speed);
     }
 
 }

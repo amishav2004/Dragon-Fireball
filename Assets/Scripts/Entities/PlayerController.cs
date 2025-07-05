@@ -2,30 +2,37 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour {
-    public float speed;
+public class PlayerController : MonoBehaviour
+{
+    public float speed = 5f;
+    public Joystick input; // Reference to the Joystick component
+
     private LevelManager levelManager;
     private Rigidbody2D rb2d;
     private bool faceRight = true;
 
-    // Use this for initialization
-    void Start () {
+    void Start()
+    {
         levelManager = GameObject.FindGameObjectWithTag("LevelManager").GetComponent<LevelManager>();
-        this.rb2d = GetComponent<Rigidbody2D>();
+        rb2d = GetComponent<Rigidbody2D>();
     }
 
-	// Update is called once per frame
+    void FixedUpdate()
+    {
+        // Get input from the joystick
+        float movementSpeedX = speed * input.Horizontal;
+        float movementSpeedY = speed * input.Vertical;
 
-	void FixedUpdate () {
-        float movementSpeedY = speed * Input.GetAxisRaw("Vertical");
-        float movementSpeedX = speed * Input.GetAxisRaw("Horizontal");
-        rb2d.velocity = new Vector2(movementSpeedX, movementSpeedY);
+        rb2d.linearVelocity = new Vector2(movementSpeedX, movementSpeedY);
 
-        if (rb2d.velocity.x < 0 && faceRight) {
+        // Flip character based on movement direction
+        if (movementSpeedX < 0 && faceRight)
+        {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
             faceRight = false;
-
-        } else if (rb2d.velocity.x > 0 && !faceRight) {
+        }
+        else if (movementSpeedX > 0 && !faceRight)
+        {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
             faceRight = true;
         }
@@ -33,8 +40,8 @@ public class PlayerController : MonoBehaviour {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        string tag = other.gameObject.tag;
-        if (tag == "Enemy") {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
             levelManager.playerDied();
         }
     }

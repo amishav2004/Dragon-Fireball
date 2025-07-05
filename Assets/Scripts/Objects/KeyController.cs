@@ -56,7 +56,7 @@ public class KeyController : MonoBehaviour {
         if(other.gameObject.tag == "Player") {
 			spriteRenderer.enabled = false;
 			col.enabled = false;
-            doorRig2D.velocity = doorInitialDirection * new Vector2(doorSpeed, doorSpeed);
+            doorRig2D.linearVelocity = doorInitialDirection * new Vector2(doorSpeed, doorSpeed);
         }
     }
 
@@ -68,7 +68,7 @@ public class KeyController : MonoBehaviour {
     }
 
     private void stopDoor() {
-        doorRig2D.velocity = Vector2.zero;
+        doorRig2D.linearVelocity = Vector2.zero;
         doorOpen = true;
     }
 
